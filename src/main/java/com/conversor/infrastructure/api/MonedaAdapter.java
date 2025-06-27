@@ -1,7 +1,6 @@
 package com.conversor.infrastructure.api;
 
 import com.conversor.application.port.out.CambiableAbstractApi;
-import com.conversor.domain.model.Moneda;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -14,12 +13,15 @@ import java.net.URL;
 public class MonedaAdapter implements CambiableAbstractApi {
 
     @Override
-    public Moneda cambiarMonedaAbs(Moneda fromMoneda, Moneda toMoneda) {
-        Moneda monedaCambiada = toMoneda;
+    public Double valorDeConversion(String fromMonedaCode, String toMonedaCode) {
+        //Talvez seria mejor que me mandes el valor numerico y luego el tipo de cambio que quiero cambiarlo,
+        //seria mas facil no?
+
+        Double valorDeConversion = 0.0;
 
         // Setting URL
         String url_str = "https://v6.exchangerate-api.com/v6/a5b23f22106c3a11a27e71c3/pair/" +
-                fromMoneda.getAbreviacion() + "/" + toMoneda.getAbreviacion();
+                fromMonedaCode + "/" + toMonedaCode;
 
         try {
             // Making Request
@@ -35,11 +37,11 @@ public class MonedaAdapter implements CambiableAbstractApi {
             // Accessing object
             String req_result = jsonobj.get("conversion_rate").getAsString();
 
-            monedaCambiada.setValor(Double.parseDouble(req_result) * fromMoneda.getValor());
+            valorDeConversion = Double.parseDouble(req_result);
 
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
-        return monedaCambiada;
+        return valorDeConversion;
     }
 }

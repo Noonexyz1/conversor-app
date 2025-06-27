@@ -2,7 +2,6 @@ package com.conversor.application.adapter;
 
 import com.conversor.application.port.in.Cambiable;
 import com.conversor.application.port.out.CambiableAbstractApi;
-import com.conversor.domain.model.Moneda;
 
 public class MonedaImpl implements Cambiable {
 
@@ -12,8 +11,10 @@ public class MonedaImpl implements Cambiable {
         this.cambiableAbstractApi = cambiableAbstractApi;
     }
 
+
     @Override
-    public Moneda cambiarMoneda(Moneda fromMoneda, Moneda toMoneda) {
-        return cambiableAbstractApi.cambiarMonedaAbs(fromMoneda, toMoneda);
+    public Double cambiarMoneda(String fromMoneda, String toMoneda, Double valorACambiar) {
+        Double rateValue = cambiableAbstractApi.valorDeConversion(fromMoneda, toMoneda);
+        return rateValue * valorACambiar;
     }
 }

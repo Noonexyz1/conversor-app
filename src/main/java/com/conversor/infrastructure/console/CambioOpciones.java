@@ -1,49 +1,44 @@
 package com.conversor.infrastructure.console;
 
-import com.conversor.domain.model.Moneda;
-
 public class CambioOpciones {
 
-    private int nroOpcion;
-    private Moneda fromMoneda;
-    private Moneda toMoneda;
+    private int nro;
+    private String opcion;
+    private Runnable ejecutarOpcion;
+
 
     public CambioOpciones() {
 
     }
 
-    public CambioOpciones(int nroOpcion, Moneda fromMoneda, Moneda toMoneda) {
-        this.nroOpcion = nroOpcion;
-        this.fromMoneda = fromMoneda;
-        this.toMoneda = toMoneda;
+    public CambioOpciones(int nro, String opcion, Runnable ejecutarOpcion) {
+        this.nro = nro;
+        this.opcion = opcion;
+        this.ejecutarOpcion = ejecutarOpcion;
     }
 
-    public int getNroOpcion() {
-        return nroOpcion;
+
+    public int getNro() {
+        return nro;
     }
 
-    public void setNroOpcion(int nroOpcion) {
-        this.nroOpcion = nroOpcion;
+    public void setNro(int nro) {
+        this.nro = nro;
     }
 
-    public String getOpcionCambio() {
-        return nroOpcion + ") " + fromMoneda.getNombre() + " =>> " + toMoneda.getNombre();
+    public String getOpcion() {
+        return opcion;
     }
 
-    public Moneda getFromMoneda() {
-        return fromMoneda;
+    public void setOpcion(String opcion) {
+        this.opcion = opcion;
     }
 
-    public void setFromMoneda(Moneda fromMoneda) {
-        this.fromMoneda = fromMoneda;
+    public Runnable getEjecutarOpcion() {
+        return ejecutarOpcion;
     }
 
-    public Moneda getToMoneda() {
-        return toMoneda;
+    public void setEjecutarOpcion(Runnable ejecutarOpcion) {
+        this.ejecutarOpcion = ejecutarOpcion;
     }
-
-    public void setToMoneda(Moneda toMoneda) {
-        this.toMoneda = toMoneda;
-    }
-
 }
